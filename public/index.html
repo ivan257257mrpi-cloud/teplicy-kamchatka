@@ -56,11 +56,14 @@
           <source id="mount-portrait" media="(max-aspect-ratio: 4/5)" srcset="./media/install-portrait-1.webp">
           <img id="mount-still" src="./media/install-1.webp" alt="Двое монтажников размечают площадку на участке" loading="lazy">
         </picture>
-        <video class="mount-video" id="mount-video" playsinline muted preload="none" aria-hidden="true" hidden></video>
+        <canvas class="mount-sequence" id="mount-sequence" aria-hidden="true" hidden></canvas>
         <div class="mount-overlay">
           <div class="shell mount-top">
             <h2 id="mount-title">Монтаж теплицы</h2>
-            <span class="mount-credit">Иллюстрация</span>
+            <div class="mount-actions">
+              <button class="mount-watch" type="button" id="watch-montage" aria-haspopup="dialog">Смотреть видео</button>
+              <span class="mount-credit">Иллюстрация</span>
+            </div>
           </div>
           <div class="shell mount-bottom">
             <p class="mount-caption" data-caption>Размечаем площадку</p>
@@ -177,6 +180,15 @@
       <button class="footer-link" type="button" data-open-privacy>Обработка данных</button>
     </div>
   </footer>
+
+  <dialog class="dialog montage-dialog" id="montage-dialog" aria-labelledby="montage-dialog-title">
+    <button class="dialog-close" type="button" aria-label="Закрыть" data-close>×</button>
+    <h2 id="montage-dialog-title">Монтаж теплицы</h2>
+    <video id="mount-video" controls playsinline preload="none">
+      <source src="./media/install.webm" type="video/webm">
+      <source src="./media/install.mp4" type="video/mp4">
+    </video>
+  </dialog>
 
   <dialog class="dialog" id="product-dialog" aria-labelledby="product-title">
     <button class="dialog-close" type="button" aria-label="Закрыть" data-close>×</button>

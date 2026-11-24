@@ -1,4 +1,4 @@
-import { scrollProgress, stageAt, stagePosition } from './montage.js';
+import { montageFrame, montageSheetCount, montageSheetSide, scrollProgress, stageAt, stagePosition } from './montage.js';
 
 const products = {
   arched: {
@@ -191,6 +191,9 @@ mapButton.addEventListener('click', () => {
 const mount = document.querySelector('[data-mount]');
 const still = document.getElementById('mount-still');
 const portraitSource = document.getElementById('mount-portrait');
+const canvas = document.getElementById('mount-sequence');
+const painter = canvas.getContext('2d', { alpha: false });
+const videoDialog = document.getElementById('montage-dialog');
 const video = document.getElementById('mount-video');
 const stages = [...mount.querySelectorAll('[data-stage]')];
 const caption = mount.querySelector('[data-caption]');
@@ -204,10 +207,18 @@ const stageDescriptions = [
 ];
 const motion = matchMedia('(prefers-reduced-motion: reduce)');
 const portrait = matchMedia('(max-aspect-ratio: 4/5)');
+const sheets = new Map();
 let current = 0;
-let pendingFrame = false;
-let targetTime;
-let canLoadVideo = false;
+let nearMontage = false;
+let paintedFrame = '';
+
+document.getElementById('watch-montage').addEventListener('click', () => {
+  videoDialog.showModal();
+  video.play().catch(() => {
+    // The controls remain available if the browser requests another gesture.
+  });
+});
+videoDialog.addEventListener('close', () => video.pause());
 
 function showStage(index) {
   if (current === index) return;
@@ -219,13 +230,46 @@ function showStage(index) {
   still.alt = stageDescriptions[index];
 }
 
-function seek() {
-  if (video.seeking || !Number.isFinite(targetTime)) return;
-  if (Math.abs(video.currentTime - targetTime) > 0.02) video.currentTime = targetTime;
+function frameSheet(index) {
+  if (sheets.has(index)) return sheets.get(index);
+  const image = new Image();
+  image.decoding = 'async';
+  image.onload = scrollMount;
+  const format = portrait.matches ? 'portrait' : 'wide';
+  image.src = './media/montage-frames/' + format + '-' + index + '.webp';
+  sheets.set(index, image);
+  return image;
+}
+
+function paintMontage(progress) {
+  if (!nearMontage || !painter) return;
+  const { sheet, column, row } = montageFrame(progress);
+  const image = frameSheet(sheet);
+  for (const index of sheets.keys()) {
+    if (Math.abs(index - sheet) > 1) sheets.delete(index);
+  }
+  if (!image.complete || !image.naturalWidth) {
+    canvas.hidden = true;
+    return;
+  }
+
+  const key = sheet + ':' + column + ':' + row;
+  if (paintedFrame !== key) {
+    const width = image.naturalWidth / montageSheetSide;
+    const height = image.naturalHeight / montageSheetSide;
+    if (canvas.width !== width || canvas.height !== height) {
+      canvas.width = width;
+      canvas.height = height;
+    }
+    painter.drawImage(image, column * width, row * height, width, height, 0, 0, width, height);
+    paintedFrame = key;
+  }
+  canvas.hidden = false;
+  if (sheet + 1 < montageSheetCount) frameSheet(sheet + 1);
+  if (sheet > 0) frameSheet(sheet - 1);
 }
 
 function scrollMount() {
-  pendingFrame = false;
   if (motion.matches) return;
   const area = mount.getBoundingClientRect();
   const pinnedHeight = mount.firstElementChild.offsetHeight;
@@ -233,16 +277,7 @@ function scrollMount() {
   document.body.classList.toggle('mount-in-view', area.top <= 1 && area.bottom >= pinnedHeight - 1);
   const progress = scrollProgress(area.top, travel);
   showStage(stageAt(progress));
-  if (video.readyState >= 1 && Number.isFinite(video.duration) && !video.hidden) {
-    targetTime = Math.max(0, Math.min(video.duration - 0.045, progress * video.duration));
-    seek();
-  }
-}
-
-function onScroll() {
-  if (pendingFrame) return;
-  pendingFrame = true;
-  requestAnimationFrame(scrollMount);
+  paintMontage(progress);
 }
 
 stages.forEach((button, index) => button.addEventListener('click', () => {
@@ -253,42 +288,29 @@ stages.forEach((button, index) => button.addEventListener('click', () => {
   const area = mount.getBoundingClientRect();
   const travel = area.height - mount.firstElementChild.offsetHeight;
   window.scrollTo({ top: area.top + window.scrollY + travel * stagePosition(index), behavior: 'instant' });
-  onScroll();
+  scrollMount();
 }));
-function loadVideo() {
-  if (!canLoadVideo || motion.matches) return;
-  const path = portrait.matches ? './media/install-portrait.mp4' : './media/install.mp4';
-  if (video.getAttribute('src') === path) return;
-  targetTime = undefined;
-  video.hidden = true;
-  video.preload = 'auto';
-  video.src = path;
-}
-const videoObserver = new IntersectionObserver(([entry]) => {
+const montageObserver = new IntersectionObserver(([entry]) => {
   if (!entry.isIntersecting) return;
-  canLoadVideo = true;
-  loadVideo();
-  videoObserver.disconnect();
+  nearMontage = true;
+  scrollMount();
+  montageObserver.disconnect();
 }, { rootMargin: '500px' });
-video.addEventListener('loadeddata', () => {
-  if (motion.matches) return;
-  video.hidden = false;
-  onScroll();
-});
-video.addEventListener('seeked', seek);
 function onMotionChange() {
-  const useVideo = !motion.matches;
-  video.hidden = !useVideo || video.readyState < 2;
-  if (!useVideo) {
-    targetTime = undefined;
+  if (motion.matches) {
+    canvas.hidden = true;
     document.body.classList.remove('mount-in-view');
   }
-  if (useVideo) loadVideo();
-  onScroll();
+  scrollMount();
 }
 motion.addEventListener('change', onMotionChange);
-portrait.addEventListener('change', loadVideo);
-window.addEventListener('scroll', onScroll, { passive: true });
-window.addEventListener('resize', onScroll);
-videoObserver.observe(mount);
+portrait.addEventListener('change', () => {
+  sheets.clear();
+  paintedFrame = '';
+  canvas.hidden = true;
+  scrollMount();
+});
+window.addEventListener('scroll', scrollMount, { passive: true });
+window.addEventListener('resize', scrollMount);
+montageObserver.observe(mount);
 onMotionChange();
