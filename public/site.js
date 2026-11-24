@@ -193,8 +193,6 @@ const still = document.getElementById('mount-still');
 const portraitSource = document.getElementById('mount-portrait');
 const canvas = document.getElementById('mount-sequence');
 const painter = canvas.getContext('2d', { alpha: false });
-const videoDialog = document.getElementById('montage-dialog');
-const video = document.getElementById('mount-video');
 const stages = [...mount.querySelectorAll('[data-stage]')];
 const caption = mount.querySelector('[data-caption]');
 const stageLabels = ['Размечаем площадку', 'Ставим основание', 'Собираем каркас', 'Крепим покрытие', 'Теплица готова'];
@@ -211,14 +209,6 @@ const sheets = new Map();
 let current = 0;
 let nearMontage = false;
 let paintedFrame = '';
-
-document.getElementById('watch-montage').addEventListener('click', () => {
-  videoDialog.showModal();
-  video.play().catch(() => {
-    // The controls remain available if the browser requests another gesture.
-  });
-});
-videoDialog.addEventListener('close', () => video.pause());
 
 function showStage(index) {
   if (current === index) return;

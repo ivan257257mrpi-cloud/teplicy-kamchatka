@@ -17,6 +17,7 @@ test('builds a standalone portfolio site without copying configuration or runtim
   const page = await readFile(join(output, 'index.html'), 'utf8');
   assert.match(page, /<body data-portfolio>/);
   assert.doesNotMatch(page, /(?:href|src|srcset)="\//);
+  assert.doesNotMatch(page, /<video\b|Смотреть видео/);
   const version = page.match(/src="\.\/site\.js\?v=([a-f0-9]{12})"/)?.[1];
   assert.ok(version);
   assert.ok(page.includes(`href="./styles.css?v=${version}"`));
@@ -25,7 +26,6 @@ test('builds a standalone portfolio site without copying configuration or runtim
   assert.deepEqual((await readdir(output)).sort(), ['index.html', 'media', 'montage.js', 'site.js', 'styles.css']);
   await access(join(output, 'media', 'install.mp4'));
   await access(join(output, 'media', 'install-portrait.mp4'));
-  await access(join(output, 'media', 'install.webm'));
   const frames = await readdir(join(output, 'media', 'montage-frames'));
   assert.equal(frames.length, 12);
   const source = await readFile(new URL('../public/index.html', import.meta.url), 'utf8');
