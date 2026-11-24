@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Теплицы с доставкой и монтажом под ключ. Работаем на выезде по Камчатке.">
+  <title>Теплицы на Камчатке — с доставкой и установкой</title>
+  <link rel="icon" href="./media/mark.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <script src="./site.js" type="module"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">К содержанию</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="./" aria-label="Теплицы Камчатка — на главную">
+        <img src="./media/mark.svg" width="42" height="42" alt="">
+        <span>Теплицы <strong>Камчатка</strong></span>
+      </a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">Меню</button>
+      <nav class="nav" id="main-nav" aria-label="Разделы сайта">
+        <a href="#mounting">Монтаж</a>
+        <a href="#catalog">Каталог</a>
+        <a href="#team">Команда</a>
+        <a href="#contacts">Контакты</a>
+      </nav>
+      <button class="button button-outline header-cta" type="button" data-open-lead>Рассчитать стоимость</button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="shell hero-wrap" aria-labelledby="hero-title">
+      <div class="hero">
+        <img class="hero-image" src="./media/hero.webp" alt="" width="1536" height="1024" fetchpriority="high">
+        <div class="hero-content">
+          <p class="hero-location"><span></span> Камчатский край</p>
+          <h1 id="hero-title">Теплицы<br>на Камчатке</h1>
+          <p class="hero-subtitle">Подберём теплицу для вашего участка, доставим и соберём под ключ.</p>
+          <div class="hero-actions">
+            <button class="button button-accent" type="button" data-open-lead>Рассчитать стоимость</button>
+            <a class="hero-link" href="#catalog">Смотреть каталог</a>
+          </div>
+        </div>
+        <span class="hero-credit">Иллюстрация</span>
+      </div>
+      <div class="hero-notes" aria-label="Услуги бригады">
+        <div><strong>Подбор теплицы</strong><span>Размер, форма и комплектация</span></div>
+        <div><strong>Доставка на участок</strong><span>Выезжаем по Камчатке</span></div>
+        <div><strong>Монтаж под ключ</strong><span>Сборка на месте</span></div>
+      </div>
+    </section>
+
+    <section class="mount-track" id="mounting" data-mount aria-labelledby="mount-title">
+      <div class="mount-stick">
+        <picture class="mount-still">
+          <source id="mount-portrait" media="(max-aspect-ratio: 4/5)" srcset="./media/install-portrait-1.webp">
+          <img id="mount-still" src="./media/install-1.webp" alt="Двое монтажников размечают площадку на участке" loading="lazy">
+        </picture>
+        <video class="mount-video" id="mount-video" playsinline muted preload="none" aria-hidden="true" hidden></video>
+        <div class="mount-overlay">
+          <div class="shell mount-top">
+            <h2 id="mount-title">Монтаж теплицы</h2>
+            <span class="mount-credit">Иллюстрация</span>
+          </div>
+          <div class="shell mount-bottom">
+            <p class="mount-caption" data-caption>Размечаем площадку</p>
+            <div class="mount-steps" role="group" aria-label="Выбор этапа монтажа">
+              <button type="button" aria-pressed="true" data-stage="0"><span>Разметка</span></button>
+              <button type="button" aria-pressed="false" data-stage="1" aria-label="Основание"><span>Основа</span></button>
+              <button type="button" aria-pressed="false" data-stage="2"><span>Каркас</span></button>
+              <button type="button" aria-pressed="false" data-stage="3"><span>Покрытие</span></button>
+              <button type="button" aria-pressed="false" data-stage="4"><span>Готово</span></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section catalog-section" id="catalog" aria-labelledby="catalog-title">
+      <div class="shell">
+        <div class="section-heading">
+          <h2 id="catalog-title">Каталог теплиц</h2>
+          <p>Выберите форму, чтобы узнать, какие вопросы учесть при подборе.</p>
+        </div>
+        <div class="product-grid">
+          <article class="product">
+            <div class="product-image"><img src="./media/arched.svg" alt="Схема арочной теплицы" width="420" height="240" loading="lazy"></div>
+            <div class="product-body">
+              <h3>Арочная</h3>
+              <p>Теплица с округлой крышей для привычной планировки грядок.</p>
+              <button class="text-button" type="button" data-product="arched">Подробнее <span aria-hidden="true">+</span></button>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product-image"><img src="./media/pointed.svg" alt="Схема каплевидной теплицы" width="420" height="240" loading="lazy"></div>
+            <div class="product-body">
+              <h3>Каплевидная</h3>
+              <p>Теплица со сводом, который сходится в конёк.</p>
+              <button class="text-button" type="button" data-product="pointed">Подробнее <span aria-hidden="true">+</span></button>
+            </div>
+          </article>
+          <article class="product">
+            <div class="product-image"><img src="./media/gable.svg" alt="Схема прямостенной теплицы" width="420" height="240" loading="lazy"></div>
+            <div class="product-body">
+              <h3>Прямостенная</h3>
+              <p>Вертикальные стены оставляют место для высоких растений по краям.</p>
+              <button class="text-button" type="button" data-product="gable">Подробнее <span aria-hidden="true">+</span></button>
+            </div>
+          </article>
+        </div>
+        <p class="section-note">Иллюстрации показывают формы. Комплектацию и наличие уточним при расчёте.</p>
+      </div>
+    </section>
+
+    <section class="section shell materials-section" id="materials" aria-labelledby="materials-title">
+      <div class="materials-intro">
+        <h2 id="materials-title">Материалы<br>и стоимость</h2>
+        <p>При подборе учитываем, где будет стоять теплица, какие культуры вы планируете выращивать и как часто будете бывать на участке.</p>
+        <button class="button button-dark" type="button" data-open-lead>Запросить расчёт</button>
+      </div>
+      <div class="materials-list">
+        <details open>
+          <summary>Каркас и покрытие</summary>
+          <p>Обсудим форму, материал каркаса и покрытие с учётом ветра, снега и условий вашего участка. Характеристики конкретной модели уточним при подборе.</p>
+        </details>
+        <details>
+          <summary>Основание и подготовка участка</summary>
+          <p>Для расчёта пригодятся размеры площадки, информация об уклоне и возможность подъехать к месту монтажа.</p>
+        </details>
+        <details>
+          <summary>От чего зависит цена</summary>
+          <p>На стоимость влияют форма и размер теплицы, комплектация, подготовка площадки, доставка и объём работ по монтажу.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="section team-section" id="team" aria-labelledby="team-title">
+      <div class="shell">
+        <div class="section-heading">
+          <h2 id="team-title">Знакомьтесь, бригада</h2>
+          <p>Нас трое. Помогаем выбрать теплицу, привозим её на участок и собираем на месте.</p>
+        </div>
+        <div class="team-grid">
+          <article><div class="portrait portrait-v" aria-label="Место для фото Виктора" role="img">В</div><h3>Виктор</h3><p>Выездная бригада</p><p class="phone-placeholder" aria-label="Телефон будет указан позже">+7 (___) ___-__-__</p></article>
+          <article><div class="portrait portrait-a" aria-label="Место для фото Алексея" role="img">А</div><h3>Алексей</h3><a href="https://www.avito.ru/brands/a6a8fe16872eb20d7b176db0554d3fef?src=sharing">Профиль на Авито</a><p class="phone-placeholder" aria-label="Телефон будет указан позже">+7 (___) ___-__-__</p></article>
+          <article><div class="portrait portrait-d" aria-label="Место для фото Дмитрия" role="img">Д</div><h3>Дмитрий</h3><p>Выездная бригада</p><p class="phone-placeholder" aria-label="Телефон будет указан позже">+7 (___) ___-__-__</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section shell contacts-section" id="contacts" aria-labelledby="contact-title">
+      <div class="contact-panel">
+        <div class="contact-info">
+          <h2 id="contact-title">Выезжаем<br>по Камчатке</h2>
+          <p>Укажите населённый пункт, чтобы мы могли рассчитать доставку и монтаж на вашем участке.</p>
+          <button class="button button-accent" type="button" data-open-lead>Оставить заявку</button>
+          <a class="contact-link" href="https://www.avito.ru/petropavlovsk-kamchatskiy/remont_i_stroitelstvo/teplitsy_iz_polikarbonata_bolshoy_vybor_7908107048">Написать на Авито</a>
+        </div>
+        <div class="map">
+          <img src="./media/map.svg" alt="" width="700" height="480" loading="lazy">
+          <div class="map-actions">
+            <button class="button" type="button" id="open-map">Показать Яндекс Карты</button>
+            <a href="https://yandex.ru/maps/?ll=158.65%2C53.02&amp;z=7" target="_blank" rel="noopener noreferrer">Открыть отдельно</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="shell footer-inner">
+      <a class="brand" href="./">
+        <img src="./media/mark.svg" width="38" height="38" alt="">
+        <span>Теплицы <strong>Камчатка</strong></span>
+      </a>
+      <span id="footer-description">Продажа, доставка и установка теплиц</span>
+      <button class="footer-link" type="button" data-open-privacy>Обработка данных</button>
+    </div>
+  </footer>
+
+  <dialog class="dialog" id="product-dialog" aria-labelledby="product-title">
+    <button class="dialog-close" type="button" aria-label="Закрыть" data-close>×</button>
+    <img id="product-picture" src="./media/arched.svg" width="420" height="240" alt="">
+    <h2 id="product-title"></h2>
+    <p id="product-description"></p>
+    <p class="section-note">Размеры, комплектацию и цену уточним для вашего участка.</p>
+    <button class="button button-dark" type="button" id="product-request">Рассчитать эту теплицу</button>
+  </dialog>
+
+  <dialog class="dialog" id="lead-dialog" aria-labelledby="lead-title">
+    <button class="dialog-close" type="button" aria-label="Закрыть" data-close>×</button>
+    <h2 id="lead-title">Рассчитать стоимость</h2>
+    <p id="lead-model" hidden></p>
+    <p id="lead-instruction">Оставьте телефон и населённый пункт.</p>
+    <form id="lead-form">
+      <button class="footer-link demo-fill" type="button" id="fill-demo" hidden>Подставить тестовые данные</button>
+      <label>Телефон
+        <input name="phone" type="tel" autocomplete="tel" inputmode="tel" maxlength="25" placeholder="+7 (___) ___-__-__" required>
+      </label>
+      <label>Населённый пункт
+        <input name="locality" autocomplete="address-level2" maxlength="100" placeholder="Например, Елизово" required>
+      </label>
+      <label>Комментарий <span class="optional">необязательно</span>
+        <textarea name="note" rows="3" maxlength="650" placeholder="Размер теплицы или особенности участка"></textarea>
+      </label>
+      <label class="check">
+        <input name="consent" type="checkbox" required>
+        <span>Согласен на обработку телефона и сведений из заявки для обратной связи.</span>
+      </label>
+      <p class="form-status" id="lead-status" role="status" aria-live="polite" hidden></p>
+      <button class="button button-dark form-submit" type="submit">Отправить заявку</button>
+    </form>
+    <div id="lead-success" hidden>
+      <p>Номер заявки <strong id="lead-id"></strong></p>
+      <p id="lead-confirmation"></p>
+      <button class="button button-dark" type="button" data-close>Закрыть</button>
+    </div>
+  </dialog>
+
+  <dialog class="dialog" id="privacy-dialog" aria-labelledby="privacy-title">
+    <button class="dialog-close" type="button" aria-label="Закрыть" data-close>×</button>
+    <h2 id="privacy-title">Обработка данных</h2>
+    <p id="privacy-explanation">Телефон, населённый пункт и комментарий нужны для расчёта и обратной связи по заявке.</p>
+    <p id="privacy-preview">В локальном предпросмотре вводите тестовые данные. Полные реквизиты оператора и политика обработки данных появятся перед публикацией.</p>
+  </dialog>
+</body>
+</html>

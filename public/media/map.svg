@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 480">
+  <rect width="700" height="480" fill="#c3d8da"/>
+  <g fill="none" stroke="#d4e5e6" stroke-width="1">
+    <path d="M0 65h700M0 130h700M0 195h700M0 260h700M0 325h700M0 390h700M70 0v480M140 0v480M210 0v480M280 0v480M350 0v480M420 0v480M490 0v480M560 0v480M630 0v480"/>
+  </g>
+  <path d="M518 0h162l-56 34-37 41-45 13-40 30-67 9-30 30 27 25-22 36-40 6-13 28-27 6-13 28 32 14-12 17-39 2-24 24 15 18-30 24-20 51-42 44-18 0 6-43 20-47-12-33 19-48-5-27 19-31 11-47 33-36 24-46 51-14 29-29 32-5 23-27z" fill="#dce6cc" stroke="#acc1a8" stroke-width="2"/>
+  <path d="M536 7l-66 57-23 26-55 14-31 43-22 38-13 39-23 22-15 30 15 17-31 33-19 39-38 61" fill="none" stroke="#aebd9d" stroke-width="1.5" stroke-dasharray="4 5"/>
+  <path d="M480 83l-35 18-27 24-36 11m-38 63-31 25-10 29m-2 57-14 32-24 24m-36 46 11-30 21-29" fill="none" stroke="#b4c5a6" stroke-width="1.4"/>
+  <g fill="#35574a" font-family="Segoe UI, sans-serif">
+    <text x="368" y="209" font-size="20" font-weight="600" transform="rotate(-30 368 209)">Камчатский край</text>
+    <text x="45" y="137" font-size="16">Охотское море</text>
+    <text x="485" y="372" font-size="16">Тихий океан</text>
+  </g>
+</svg>

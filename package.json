@@ -1,0 +1,13 @@
+{
+  "name": "teplicy-kamchatka",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server/start.mjs",
+    "dev": "node --watch --env-file-if-exists=.env server/start.mjs",
+    "build:pages": "node scripts/build-pages.mjs",
+    "test": "node --test"
+  }
+}
